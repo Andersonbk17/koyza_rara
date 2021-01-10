@@ -154,7 +154,21 @@ public class frmLoginInicio extends javax.swing.JFrame {
 
     private void jButtonENTRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonENTRARActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "teste");
+        
+        frmPrincipal janela = new frmPrincipal();
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
+        this.dispose();
+        
+        
+        
+         
+        
+        
+        
+        
+        
+       
     }//GEN-LAST:event_jButtonENTRARActionPerformed
 
     /**
