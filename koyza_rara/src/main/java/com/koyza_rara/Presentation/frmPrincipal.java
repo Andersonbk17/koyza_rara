@@ -20,10 +20,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 
-private Date dataAtual = new Date();
+//private Date dataAtual = new Date();
 
-DateFormat formato = new SimpleDateFormat("HH:mm:ss");
-String formattedDate = formato.format(dataAtual);
+//DateFormat formato = new SimpleDateFormat("HH:mm:ss");
+//String formattedDate = formato.format(dataAtual);
 public class frmPrincipal extends javax.swing.JFrame {
 
     /**
@@ -45,6 +45,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSuperior = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -58,6 +61,30 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList2);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(165, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
 
         jMenuSuperior.setText("Cadastros");
 
@@ -80,6 +107,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuSuperior.add(jMenuItem3);
 
         jMenuItem4.setText("Produtos");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenuSuperior.add(jMenuItem4);
 
         jMenuItem6.setText("Funcionários");
@@ -116,11 +148,17 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1311, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(639, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,49 +180,25 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         
-        frmCadastroFuncionario janela = new frmCadastroFuncionario(this, rootPaneCheckingEnabled);
+        frmListaFuncionarios janela = new frmListaFuncionarios(this, rootPaneCheckingEnabled);
         janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        frmListaProdutos janela = new frmListaProdutos(this, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(rootPaneCheckingEnabled);
+
+
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmPrincipal().setVisible(true);
-            }
-        });
-
-*/
-    }
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> jList2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -196,5 +210,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMenuSuperior;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

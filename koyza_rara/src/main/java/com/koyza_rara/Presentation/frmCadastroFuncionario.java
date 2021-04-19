@@ -5,7 +5,9 @@
  */
 package com.koyza_rara.Presentation;
 
-import java.util.Date;
+import javax.swing.JOptionPane;
+
+
 
 /**
  *
@@ -48,12 +50,13 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFielNome = new javax.swing.JTextField();
+        jTextFieldRG = new javax.swing.JTextField();
+        jTextFieldCPF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTextFieldDataNascimento = new javax.swing.JTextField();
+        jButtonSalvar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Funcionário"));
 
@@ -62,12 +65,6 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         jLabel2.setText("RG:*");
 
         jLabel3.setText("CPF:*");
-
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
 
         jLabel4.setText("DATA DE NASCIMENTO:*");
 
@@ -82,16 +79,19 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(jTextFielNome, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jTextFieldRG))
                 .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addContainerGap(321, Short.MAX_VALUE))
+                        .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldDataNascimento)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,16 +100,27 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFielNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addComponent(jTextFieldRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,13 +130,23 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Novo Funcionario");
@@ -133,16 +154,29 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        if(jTextFielNome.getText().isEmpty() || jTextFieldCPF.getText().isEmpty() || jTextFieldDataNascimento.getText().isEmpty()){
+             JOptionPane.showMessageDialog(rootPane, "Todos os campos obrigatórios devem ser preenchidos!");
+        
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFielNome;
+    private javax.swing.JTextField jTextFieldCPF;
+    private javax.swing.JTextField jTextFieldDataNascimento;
+    private javax.swing.JTextField jTextFieldRG;
     // End of variables declaration//GEN-END:variables
 }
