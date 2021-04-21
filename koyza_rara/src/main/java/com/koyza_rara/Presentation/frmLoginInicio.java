@@ -199,10 +199,8 @@ public class frmLoginInicio extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmLoginInicio().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmLoginInicio().setVisible(true);
         });
     }
 

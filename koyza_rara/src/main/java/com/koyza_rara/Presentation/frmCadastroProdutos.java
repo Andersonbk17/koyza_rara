@@ -15,17 +15,17 @@ import javax.swing.JOptionPane;
 public class frmCadastroProdutos extends javax.swing.JDialog {
 
     
-    private frmListaProdutos janelaPai;
+//    private frmListaProdutos janelaPai;
     
     /**
      * Creates new form frmCadastroProdutos
      * @param parent
      * @param modal
      */
-    public frmCadastroProdutos(java.awt.Frame parent, boolean modal, frmListaProdutos janelaPai) {
+    public frmCadastroProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.janelaPai =  janelaPai;
+      //  this.janelaPai =  janelaPai;
     }
 
     /**

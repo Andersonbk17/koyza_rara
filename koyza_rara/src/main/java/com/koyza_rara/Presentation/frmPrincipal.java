@@ -186,10 +186,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        frmListaProdutos janela = new frmListaProdutos(this, rootPaneCheckingEnabled);
+      /*  frmListaProdutos janela = new frmListaProdutos(this, rootPaneCheckingEnabled);
         janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
-
+*/
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
