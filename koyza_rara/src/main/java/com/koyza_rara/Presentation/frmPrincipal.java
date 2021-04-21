@@ -51,7 +51,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSuperior = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemClientes = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -61,6 +61,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ITENS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -93,19 +95,20 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuItem1.setText("Usuários");
         jMenuSuperior.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\cliente.png")); // NOI18N
-        jMenuItem2.setText("Clientes");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        jMenuItemClientes.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\cliente.png")); // NOI18N
+        jMenuItemClientes.setText("Clientes");
+        jMenuItemClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemClientesActionPerformed(evt);
             }
         });
-        jMenuSuperior.add(jMenuItem2);
+        jMenuSuperior.add(jMenuItemClientes);
 
         jMenuItem3.setText("Fornecedores");
         jMenuSuperior.add(jMenuItem3);
 
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         jMenuItem4.setText("Produtos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +117,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         jMenuSuperior.add(jMenuItem4);
 
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         jMenuItem6.setText("Funcionários");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,22 +155,26 @@ public class frmPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(639, Short.MAX_VALUE))
+                .addContainerGap(627, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
+        frmListaClientes janela = new frmListaClientes(null, rootPaneCheckingEnabled);
+        janela.setLocationRelativeTo(null);
+        janela.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jMenuItemClientesActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
@@ -190,7 +198,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         janela.setLocationRelativeTo(null);
         janela.setVisible(rootPaneCheckingEnabled);
 */
-
+      frmListaProdutos janela = new frmListaProdutos(this, rootPaneCheckingEnabled);
+      janela.setLocationRelativeTo(null);
+      janela.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
@@ -204,11 +214,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenu jMenuSuperior;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

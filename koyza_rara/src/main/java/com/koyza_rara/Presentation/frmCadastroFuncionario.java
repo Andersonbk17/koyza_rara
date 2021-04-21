@@ -55,6 +55,8 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
         jTextFieldCPF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldDataNascimento = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
@@ -68,19 +70,29 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
 
         jLabel4.setText("DATA DE NASCIMENTO:*");
 
+        jLabel5.setText("Cargo:*");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Gerente", "Atendente", "" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFielNome, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(jTextFieldRG))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFielNome, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                            .addComponent(jTextFieldRG)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, 0, 222, Short.MAX_VALUE)))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -91,7 +103,7 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldDataNascimento)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +122,10 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jTextFieldDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jButtonSalvar.setText("Salvar");
@@ -135,14 +150,14 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
                 .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,10 +184,12 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFielNome;
     private javax.swing.JTextField jTextFieldCPF;

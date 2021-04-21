@@ -9,12 +9,13 @@ package com.koyza_rara.Presentation;
  *
  * @author Anderson
  */
-public class frmListaFuncionarios extends javax.swing.JDialog {
+public class frmListaProdutos extends javax.swing.JDialog {
 
     /**
      * Creates new form frmListaFuncionarios
+     * @param parent
      */
-    public frmListaFuncionarios(java.awt.Frame parent, boolean modal) {
+    public frmListaProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -145,11 +146,12 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-       
-       frmCadastroFuncionario janela = new frmCadastroFuncionario(null, rootPaneCheckingEnabled);
-       this.dispose();
+       frmCadastroProdutos janela = new frmCadastroProdutos(null, rootPaneCheckingEnabled);
        janela.setLocationRelativeTo(null);
-       janela.setVisible(rootPaneCheckingEnabled);
+       janela.setVisible(true);
+       this.dispose();
+       
+       // frmCadastroFuncionario janela = new frmCadastroFuncionario(parent, rootPaneCheckingEnabled);
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     /**
