@@ -5,6 +5,8 @@
  */
 package com.koyza_rara.Presentation;
 
+import com.koyza_rara.DataAccess.ClienteDAO;
+
 /**
  *
  * @author Anderson
@@ -17,6 +19,11 @@ public class frmCadastroClientes extends javax.swing.JDialog {
     public frmCadastroClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        
+        ClienteDAO cliente = new ClienteDAO();
+       
+        System.out.print( cliente.ListarTodos());
     }
 
     /**

@@ -15,6 +15,7 @@ package com.koyza_rara.Presentation;
 
  
 
+import com.koyza_rara.DataAccess.TestedAO;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,6 +35,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         
         //FULL SCREEN
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        
+        
+        TestedAO teste = new TestedAO();
+        
+        
+        System.out.println(teste.ListarTodos());
+        
+        
+        
     }
 
     /**
