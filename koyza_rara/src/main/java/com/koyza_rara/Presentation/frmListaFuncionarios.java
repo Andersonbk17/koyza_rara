@@ -10,6 +10,7 @@ import com.koyza_rara.DomainModel.Funcionario;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +26,8 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
     Funcionario funcionario;;
     FuncionarioDAO dao; 
     protected List<Funcionario> lista;
+    private int idSelecionadoNaTabela;
+    private Funcionario funcionarioNaTabela;
     
     
     
@@ -152,6 +155,11 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
         jButtonExcluir.setMaximumSize(new java.awt.Dimension(97, 31));
         jButtonExcluir.setMinimumSize(new java.awt.Dimension(97, 31));
         jButtonExcluir.setPreferredSize(new java.awt.Dimension(97, 31));
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jButtonSair.setText("Sair");
         jButtonSair.setMaximumSize(new java.awt.Dimension(97, 31));
@@ -176,6 +184,11 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
                 "Title 1"
             }
         ));
+        jTableFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableFuncionariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableFuncionarios);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -262,6 +275,44 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
        janela.setLocationRelativeTo(null);
        janela.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jButtonNovoActionPerformed
+
+    private void jTableFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFuncionariosMouseClicked
+        /*CASO O USUARIO CLICAR EM ALGUM ITEM NA TABELA*/
+        
+        
+        idSelecionadoNaTabela = jTableFuncionarios.getSelectedRow();
+        
+        funcionarioNaTabela =  lista.get(idSelecionadoNaTabela);
+        System.out.println(funcionarioNaTabela);
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jTableFuncionariosMouseClicked
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        if(funcionarioNaTabela != null){
+              if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
+                    + " excluir o Funcionário?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+
+                if(dao.Apagar(funcionarioNaTabela)){
+                    JOptionPane.showMessageDialog(rootPane, "Funcionário excluído com sucesso!");
+                    funcionarioNaTabela = null;
+                    lista.clear();
+                    lista = dao.ListarTodos();
+                    preencheTabela();
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o Funcionário");
+                }
+            }
+         }else{
+             
+                JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
+             
+         }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments

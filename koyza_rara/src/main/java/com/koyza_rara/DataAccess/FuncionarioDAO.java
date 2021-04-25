@@ -21,7 +21,23 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario>{
 
     @Override
     public boolean Apagar(Funcionario obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       EntityTransaction transacao = manager.getTransaction();
+        try{
+            transacao.begin();
+            String consulta = "Update Funcionario s set s.ativo = 0 WHERE s.id ="+obj.getId();
+            
+             Query query = manager.createQuery(consulta);
+             query.executeUpdate();
+             
+             transacao.commit();
+             return true;
+        
+            
+        }catch(Exception ex){
+           ex.printStackTrace();
+           transacao.rollback();
+            return false;
+        }
     }
     
         
@@ -29,7 +45,7 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario>{
         EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
-            String consulta = "Select s from Funcionario s";
+            String consulta = "Select s from Funcionario s WHERE s.ativo = 1";
             
              Query query = manager.createQuery(consulta);
              
