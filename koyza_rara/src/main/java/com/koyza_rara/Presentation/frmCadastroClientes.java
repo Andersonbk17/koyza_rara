@@ -6,6 +6,8 @@
 package com.koyza_rara.Presentation;
 
 import com.koyza_rara.DataAccess.ClienteDAO;
+import com.koyza_rara.DomainModel.Cliente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -53,12 +55,11 @@ public class frmCadastroClientes extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jTextFieldLogradouroComplemento = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldContato = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonSalvar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,7 +77,11 @@ public class frmCadastroClientes extends javax.swing.JDialog {
 
         jLabel3.setText("Data de Nascimento:*");
 
-        jFormattedTextFieldDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        try {
+            jFormattedTextFieldDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel4.setText("Sexo:*");
 
@@ -93,7 +98,7 @@ public class frmCadastroClientes extends javax.swing.JDialog {
         jLabel9.setText("Contato:*");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+            jFormattedTextFieldContato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -144,7 +149,7 @@ public class frmCadastroClientes extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jFormattedTextFieldContato, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
@@ -185,20 +190,31 @@ public class frmCadastroClientes extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jButton1.setText("jButton1");
-
-        jButton2.setText("Salvar");
-
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\salvar.png")); // NOI18N
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setMaximumSize(new java.awt.Dimension(85, 27));
+        jButtonSalvar.setMinimumSize(new java.awt.Dimension(85, 27));
+        jButtonSalvar.setPreferredSize(new java.awt.Dimension(85, 27));
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\Fechar.png")); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setMaximumSize(new java.awt.Dimension(85, 27));
+        jButtonCancelar.setMinimumSize(new java.awt.Dimension(85, 27));
+        jButtonCancelar.setPreferredSize(new java.awt.Dimension(85, 27));
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
@@ -212,16 +228,11 @@ public class frmCadastroClientes extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(249, 249, 249)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(234, 234, 234)
+                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(59, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,31 +241,73 @@ public class frmCadastroClientes extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        if(jTextFielNome.getText().trim().isEmpty() || jTextFieldEmail.getText().isEmpty() || 
+                jTextFieldLogradouro.getText().isEmpty() || jTextFieldLogradouroBairro.getText().isEmpty() 
+                || jTextFieldLogradouroNumero.getText().isEmpty() || jFormattedTextFieldCPF.getText().isEmpty() 
+                || jFormattedTextFieldContato.getText().isEmpty() || jFormattedTextFieldDataNascimento.getText().isEmpty() || jComboBoxSexo.getSelectedIndex() == 0 ){
+            
+                    JOptionPane.showMessageDialog(rootPane, "PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS !");
+        
+        }else if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja salvar o Cliente",
+               "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+                cadastro = true;
+                
+                Cliente cliente = null;
+                ClienteDAO dao = new ClienteDAO();
+                
+                if(cadastro){
+                    cliente = new Cliente();
+                }else{
+                //fazer a parte de edicação
+                }
+                
+                cliente.setContato_email(jTextFieldEmail.getText());
+                cliente.setContato_tel(jFormattedTextFieldContato.getText());
+                cliente.setCpf(jFormattedTextFieldCPF.getText());
+                cliente.setData_nascimento(jFormattedTextFieldDataNascimento.getText());
+                cliente.setEndereco_bairro(jTextFieldLogradouroBairro.getText());
+                cliente.setEndereco_cep("acrescenatar o campo");
+                cliente.setEndereco_logradouro(jTextFieldLogradouro.getText());
+                cliente.setEndereco_numero(jTextFieldLogradouroNumero.getText());
+                cliente.setEndereco_referencia(jTextFieldLogradouroComplemento.getText());
+                cliente.setNome(jTextFielNome.getText());
+                cliente.setSexo(jComboBoxSexo.getSelectedItem().toString());
+
+                if(dao.Salvar(cliente)){
+                     JOptionPane.showMessageDialog(rootPane, "SALVO COM SUCESSO !");
+                     
+                     frmListaClientes janela = new frmListaClientes(null,true);
+                     janela.setLocationRelativeTo(null);
+                     this.dispose();
+                     janela.setVisible(true);
+                     
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "ERRO AO SALVAR O FUNCIONARIO !");
+                }
+            
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private boolean cadastro;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBoxSexo;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
+    private javax.swing.JFormattedTextField jFormattedTextFieldContato;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataNascimento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

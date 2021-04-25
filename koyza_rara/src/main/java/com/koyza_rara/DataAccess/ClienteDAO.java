@@ -48,10 +48,10 @@ public class ClienteDAO extends DAOGenerico<Cliente>{
 
             String consulta = "";
             if (obj.getId() != null) {
-                 consulta = "Select s from Cliente s Where s.ativo = 1 and s.id like '%" + obj.getId() + "%'";
+                 consulta = "Select s from Clientes s Where s.ativo = 1 and s.id like '%" + obj.getId() + "%'";
                  
              }else if(obj.getNome() != null){
-                 consulta = "Select s from Cliente s Where s.ativo = 1 and s.nome like '%" + obj.getNome() + "%'";
+                 consulta = "Select s from Clientes s Where s.ativo = 1 and s.nome like '%" + obj.getNome() + "%'";
              }
             transacao.begin();
             // Cria a consulta no JPA
