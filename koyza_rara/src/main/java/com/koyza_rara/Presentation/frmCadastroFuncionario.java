@@ -248,7 +248,12 @@ public class frmCadastroFuncionario extends javax.swing.JDialog {
             
             if(dao.Salvar(funcionario)){
                 JOptionPane.showMessageDialog(rootPane, "SALVO COM SUCESSO !");
-                this.dispose();
+                
+                frmListaFuncionarios janela = new frmListaFuncionarios(null, true);
+                janela.setLocationRelativeTo(null);
+                 this.dispose();
+                janela.setVisible(true);
+               
             }else{
                     JOptionPane.showMessageDialog(rootPane, "ERRO AO SALVAR O FUNCIONARIO !");
                 }

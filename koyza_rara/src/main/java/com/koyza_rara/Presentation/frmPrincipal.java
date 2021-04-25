@@ -38,11 +38,10 @@ public class frmPrincipal extends javax.swing.JFrame {
         
         
         
-        TestedAO teste = new TestedAO();
+      
         
         
-        System.out.println(teste.ListarTodos());
-        
+       
         
         
     }

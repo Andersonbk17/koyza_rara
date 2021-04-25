@@ -5,6 +5,13 @@
  */
 package com.koyza_rara.Presentation;
 
+import com.koyza_rara.DataAccess.FuncionarioDAO;
+import com.koyza_rara.DomainModel.Funcionario;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Anderson
@@ -14,10 +21,79 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
     /**
      * Creates new form frmListaFuncionarios
      */
+    
+    Funcionario funcionario;;
+    FuncionarioDAO dao; 
+    protected List<Funcionario> lista;
+    
+    
+    
+    
     public frmListaFuncionarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        
+        /* CARREGA LISTA JA AO ABRIR JANELA*/
+        dao = new FuncionarioDAO();
+        lista = new LinkedList<>();
+        lista = dao.ListarTodos();
+        
+        preencheTabela();
+        
     }
+    
+     protected void preencheTabela(){
+        if(lista == null){
+            lista = new LinkedList<>();
+            
+        }
+        
+        /*
+         
+         * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
+         * 
+         * http://www.guj.com.br/java/44193-jtable-nao-editavel
+         
+         */
+        
+        
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override  
+          public boolean isCellEditable(int row, int col){   
+                 return false;   
+          }   
+        };
+        
+        model.addColumn("ID");
+        model.addColumn("NOME");
+        model.addColumn("CPF");
+        model.addColumn("RG");
+        model.addColumn("DATA DE NASCIMENTO");
+        model.addColumn("CONTATO");
+       
+        
+        for(Funcionario p : lista){
+            Vector v = new Vector();
+            v.add(0,p.getId());
+            v.add(1,p.getNome());
+            v.add(2,p.getCpf());
+            v.add(3,p.getRg());
+            v.add(4,p.getDataNascimento());
+            v.add(5,p.getContato());
+                   
+            model.addRow(v);
+        
+        }
+        
+        jTableFuncionarios.setModel(model);
+        jTableFuncionarios.repaint();
+        
+
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,6 +113,8 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
         jButtonExcluir = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableFuncionarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,18 +130,33 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
 
         jButtonFiltrar.setText("Filtrar");
 
+        jButtonNovo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\Novo.png")); // NOI18N
         jButtonNovo.setText("Novo");
+        jButtonNovo.setMaximumSize(new java.awt.Dimension(97, 31));
+        jButtonNovo.setMinimumSize(new java.awt.Dimension(97, 31));
+        jButtonNovo.setPreferredSize(new java.awt.Dimension(97, 31));
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovoActionPerformed(evt);
             }
         });
 
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\alterar.png")); // NOI18N
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.setMaximumSize(new java.awt.Dimension(97, 31));
+        jButtonAlterar.setMinimumSize(new java.awt.Dimension(97, 31));
+        jButtonAlterar.setPreferredSize(new java.awt.Dimension(97, 31));
 
+        jButtonExcluir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\excluir.png")); // NOI18N
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setMaximumSize(new java.awt.Dimension(97, 31));
+        jButtonExcluir.setMinimumSize(new java.awt.Dimension(97, 31));
+        jButtonExcluir.setPreferredSize(new java.awt.Dimension(97, 31));
 
         jButtonSair.setText("Sair");
+        jButtonSair.setMaximumSize(new java.awt.Dimension(97, 31));
+        jButtonSair.setMinimumSize(new java.awt.Dimension(97, 31));
+        jButtonSair.setPreferredSize(new java.awt.Dimension(97, 31));
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairActionPerformed(evt);
@@ -72,15 +165,33 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Funcionários"));
 
+        jTableFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableFuncionarios);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 242, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,15 +209,15 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
                         .addComponent(jComboBoxTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
                         .addComponent(jButtonFiltrar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(88, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonNovo)
-                        .addGap(106, 106, 106)
-                        .addComponent(jButtonAlterar)
-                        .addGap(132, 132, 132)
-                        .addComponent(jButtonExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
-                        .addComponent(jButtonSair)
+                        .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -121,14 +232,14 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
                     .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFiltrar))
-                .addGap(37, 37, 37)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNovo)
-                    .addComponent(jButtonAlterar)
-                    .addComponent(jButtonExcluir)
-                    .addComponent(jButtonSair))
+                    .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43))
         );
 
@@ -166,6 +277,8 @@ public class frmListaFuncionarios extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jComboBoxTipoFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableFuncionarios;
     private javax.swing.JTextField jTextFieldFiltrar;
     // End of variables declaration//GEN-END:variables
 }
