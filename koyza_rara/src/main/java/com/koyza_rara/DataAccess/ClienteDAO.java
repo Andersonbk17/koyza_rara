@@ -11,7 +11,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Thaisa
+ * @author Anderson
  */
 public class ClienteDAO extends DAOGenerico<Cliente>{
     public ClienteDAO(){
@@ -24,7 +24,7 @@ public class ClienteDAO extends DAOGenerico<Cliente>{
         EntityTransaction transacao = manager.getTransaction();
         try{
             transacao.begin();
-            String consulta = "Select s from Clientes s where s.ativo = 1";
+            String consulta = "Select s from Cliente s where s.ativo = 1";
             
              Query query = manager.createQuery(consulta);
              

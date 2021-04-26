@@ -34,7 +34,7 @@ public class Cliente  implements Serializable {
     public Cliente(){
      //   this.dataCadastro = new Date();
         ativo = true;
-        this.data_cadastro = new Date().toString();
+       // this.data_cadastro = new Date().toString();
     }
     
     private String nome;

@@ -5,6 +5,14 @@
  */
 package com.koyza_rara.Presentation;
 
+import com.koyza_rara.DataAccess.ClienteDAO;
+import com.koyza_rara.DomainModel.Cliente;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Anderson
@@ -14,10 +22,81 @@ public class frmListaClientes extends javax.swing.JDialog {
     /**
      * Creates new form frmListaFuncionarios
      */
+    
+    ClienteDAO dao;
+    Cliente cliente;
+    protected List<Cliente> lista;
+    private int idSelecionadoNaTabela;
+    private Cliente clienteNaTabela;
+    
     public frmListaClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        dao = new ClienteDAO();
+        lista = new LinkedList<>();
+        lista = dao.ListarTodos();
+        preencheTabela();
+        
+        
     }
+    
+    
+    protected void preencheTabela(){
+        if(lista == null){
+            lista = new LinkedList<>();
+            
+        }
+        
+        /*
+         
+         * DEFININDO "TABLE MODEL" COM LINHAS NÃO EDITAVEIS
+         * 
+         * http://www.guj.com.br/java/44193-jtable-nao-editavel
+         
+         */
+        
+        
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override  
+          public boolean isCellEditable(int row, int col){   
+                 return false;   
+          }   
+        };
+        
+        model.addColumn("ID");
+        model.addColumn("NOME");
+        model.addColumn("CPF");
+        model.addColumn("EMAIL");
+        model.addColumn("CONTATO");
+        
+       
+        
+        for(Cliente p : lista){
+            Vector v = new Vector();
+            v.add(0,p.getId());
+            v.add(1,p.getNome());
+            v.add(2,p.getCpf());
+            v.add(3,p.getContato_email());
+            v.add(4,p.getContato_tel());
+            
+                   
+            model.addRow(v);
+        
+        }
+        
+        jTableClientes.setModel(model);
+        jTableClientes.repaint();
+        
+
+    }
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,8 +116,11 @@ public class frmListaClientes extends javax.swing.JDialog {
         jButtonExcluir = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(749, 480));
 
         jLabel1.setText("Filtro");
 
@@ -52,18 +134,31 @@ public class frmListaClientes extends javax.swing.JDialog {
 
         jButtonFiltrar.setText("Filtrar");
 
+        jButtonNovo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\Novo.png")); // NOI18N
         jButtonNovo.setText("Novo");
+        jButtonNovo.setPreferredSize(new java.awt.Dimension(97, 31));
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovoActionPerformed(evt);
             }
         });
 
+        jButtonAlterar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\alterar.png")); // NOI18N
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.setPreferredSize(new java.awt.Dimension(97, 31));
 
+        jButtonExcluir.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\excluir.png")); // NOI18N
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setPreferredSize(new java.awt.Dimension(97, 31));
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
+        jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Anderson\\Documents\\NetBeansProjects\\koyza_rara\\koyza_rara\\src\\main\\java\\com\\koyza_rara\\Presentation\\icones\\Fechar.png")); // NOI18N
         jButtonSair.setText("Sair");
+        jButtonSair.setPreferredSize(new java.awt.Dimension(97, 31));
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairActionPerformed(evt);
@@ -71,16 +166,41 @@ public class frmListaClientes extends javax.swing.JDialog {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Funcionários"));
+        jPanel1.setPreferredSize(new java.awt.Dimension(649, 380));
+
+        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableClientes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 242, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -93,24 +213,21 @@ public class frmListaClientes extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBoxTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
-                        .addComponent(jButtonFiltrar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonNovo)
-                        .addGap(106, 106, 106)
-                        .addComponent(jButtonAlterar)
-                        .addGap(132, 132, 132)
-                        .addComponent(jButtonExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
-                        .addComponent(jButtonSair)
-                        .addGap(58, 58, 58))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(jButtonFiltrar))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,14 +238,14 @@ public class frmListaClientes extends javax.swing.JDialog {
                     .addComponent(jTextFieldFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFiltrar))
-                .addGap(37, 37, 37)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNovo)
-                    .addComponent(jButtonAlterar)
-                    .addComponent(jButtonExcluir)
-                    .addComponent(jButtonSair))
+                    .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43))
         );
 
@@ -153,6 +270,35 @@ public class frmListaClientes extends javax.swing.JDialog {
       
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        if(clienteNaTabela != null){
+              if(JOptionPane.showConfirmDialog(rootPane, "Você Tem certeza que deseja"
+                    + " excluir o Cliente?", "Confirmação",JOptionPane.OK_CANCEL_OPTION) == 0){
+
+                if(dao.Apagar(clienteNaTabela)){
+                    JOptionPane.showMessageDialog(rootPane, "Cliente excluído com sucesso!");
+                    clienteNaTabela = null;
+                    lista.clear();
+                    lista = dao.ListarTodos();
+                    preencheTabela();
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao excluir o Cliente");
+                }
+            }
+         }else{
+             
+                JOptionPane.showMessageDialog(rootPane, "Nenhum item Selecionado na lista!");
+             
+         }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
+        
+        idSelecionadoNaTabela = jTableClientes.getSelectedRow();
+        clienteNaTabela = lista.get(idSelecionadoNaTabela);
+        
+    }//GEN-LAST:event_jTableClientesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -167,6 +313,8 @@ public class frmListaClientes extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jComboBoxTipoFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableClientes;
     private javax.swing.JTextField jTextFieldFiltrar;
     // End of variables declaration//GEN-END:variables
 }
