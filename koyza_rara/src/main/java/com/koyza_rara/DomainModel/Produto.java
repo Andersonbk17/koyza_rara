@@ -38,6 +38,9 @@ public class Produto implements Serializable {
     private String sexo;
     private boolean ativo;
     private String cod_barra;
+    private Marca  marcas_idmarcas;
+   // private F fornecedores_idfornecedores;
+    
     
     
 }

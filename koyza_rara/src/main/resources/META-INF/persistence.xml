@@ -6,6 +6,8 @@
     <class>com.koyza_rara.DomainModel.Funcionario</class>
     <class>com.koyza_rara.DomainModel.Cliente</class>
     <class>com.koyza_rara.DomainModel.Marca</class>
+    <class>com.koyza_rara.DomainModel.Produto</class>
+    <class>com.koyza_rara.DomainModel.Fornecedores</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

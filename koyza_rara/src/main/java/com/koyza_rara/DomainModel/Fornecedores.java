@@ -1,5 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.koyza_rara.DomainModel;
@@ -16,23 +17,17 @@ import javax.persistence.Table;
  *
  * @author Anderson
  */
-@Entity
-@Table(name="Clientes")
-public class Cliente  implements Serializable {
+
+@Entity(name="Fornecedores")
+@Table(name="Fornecedores")
+public class Fornecedores implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private boolean ativo;
-
-   // @Temporal(javax.persistence.TemporalType.DATE)
-  //  private Date dataCadastro;
-    
-    public Cliente(){
-     //   this.dataCadastro = new Date();
-        ativo = true;
-       // this.data_cadastro = new Date().toString();
+    public Fornecedores(){
+        
     }
     
     private String nome;
@@ -40,13 +35,12 @@ public class Cliente  implements Serializable {
     private String endereco_numero;
     private String endereco_bairro;
     private String endereco_referencia;
-    private String data_nascimento;
     private String endereco_cep;
-    private String cpf;
-    private String sexo;
     private String contato_tel;
+    private String contato_tel2;
     private String contato_email;
-    private String data_cadastro;
+    private String cnpj;
+    private boolean ativo;
 
     public Long getId() {
         return id;
@@ -96,33 +90,12 @@ public class Cliente  implements Serializable {
         this.endereco_referencia = endereco_referencia;
     }
 
-    public String getData_nascimento() {
-        return data_nascimento;
-    }
-
-    public void setData_nascimento(String data_nascimento) {
-        this.data_nascimento = data_nascimento;
-    }
-
     public String getEndereco_cep() {
         return endereco_cep;
     }
 
     public void setEndereco_cep(String endereco_cep) {
         this.endereco_cep = endereco_cep;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getContato_tel() {
@@ -133,6 +106,14 @@ public class Cliente  implements Serializable {
         this.contato_tel = contato_tel;
     }
 
+    public String getContato_tel2() {
+        return contato_tel2;
+    }
+
+    public void setContato_tel2(String contato_tel2) {
+        this.contato_tel2 = contato_tel2;
+    }
+
     public String getContato_email() {
         return contato_email;
     }
@@ -141,11 +122,13 @@ public class Cliente  implements Serializable {
         this.contato_email = contato_email;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getCnpj() {
+        return cnpj;
     }
-    
-    
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 
     public boolean isAtivo() {
         return ativo;
@@ -155,21 +138,12 @@ public class Cliente  implements Serializable {
         this.ativo = ativo;
     }
 
-    public String getData_cadastro() {
-        return data_cadastro;
-    }
-
-    public void setData_cadastro(String data_cadastro) {
-        this.data_cadastro = data_cadastro;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + (this.ativo ? 1 : 0);
-        hash = 29 * hash + Objects.hashCode(this.nome);
-        hash = 29 * hash + Objects.hashCode(this.cpf);
-        hash = 29 * hash + Objects.hashCode(this.data_cadastro);
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.cnpj);
         return hash;
     }
 
@@ -184,20 +158,21 @@ public class Cliente  implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cliente other = (Cliente) obj;
+        final Fornecedores other = (Fornecedores) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.cnpj, other.cnpj)) {
+            return false;
+        }
         return true;
     }
 
-    
-    
-
-    
-
     @Override
     public String toString() {
-        return this.getNome();
+        return "Fornecedores{" + "nome=" + nome + '}';
     }
-
+    
     
     
     
